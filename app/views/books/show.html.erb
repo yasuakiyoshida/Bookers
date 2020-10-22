@@ -1,0 +1,12 @@
+<!-- 投稿詳細画面：投稿された本の感想を個別に表示する画面 -->
+<body>
+    <p><%= notice %></p>
+    <p>
+        <strong>Title:<%= @book.title %></strong>
+    </p>
+    <p>
+        <strong>Body:<%= @book.body %></strong>
+    </p>
+    <%= link_to "Edit", edit_book_path(@book.id) %>
+    <%= link_to "Back", books_path %>
+</body>
