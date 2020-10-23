@@ -1,8 +1,6 @@
-<!-- 投稿一覧画面：投稿された本の感想を一覧表示する画面（一覧表示はIDの若い順に表示する） -->
 <body>
   <p id ="notice"><%= notice %></p>
   <h1>Books</h1>
-  <!-- 投稿一覧 -->
   <table>
     <thead>
       <tr>
@@ -23,32 +21,31 @@
       </tbody>
     <% end %>
   </table>
-  <!-- ここまで投稿一覧 -->
-  <!-- 投稿フォーム -->
   <h2>New book</h2>
-  <%= form_with model:@book, local:true do |f| %>
-    <% if @book.errors.any? %>
-　    <div id="error_explanation">
-　      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
-　    
-　      <ul>
-　        <% @book.errors.full_messages.each do |message| %>
-　          <li><%= message %></li>
-　        <% end %>
-　      </ul>　
-　    </div>
-    <% end %>
+    <%= form_with model:@book, class: "edit_book", local: true do |f| %>
+       <% if @book.errors.any? %>
+         <div id="error_explanation">
+           <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+           <ul>
+             <% @book.errors.full_messages.each do |message| %>
+             <li><%= message %></li>
+             <% end %>
+           </ul>
+         </div>
+       <% end %>
     <div class = "field">
-      <label for = "book_title">Title</label>
-      <%= f.text_field :title, {class: "book_title", id: "book_title"} %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
     </div>
+    
     <div class = "field">
-      <label for = "book_body">Body</label>
-      <%= f.text_area :body, {class: "book_body", id: "book_body"} %>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
     </div>
+    
     <div class = "actions">
       <%= f.submit 'Create Book' %>
     </div>
+    
   <% end %>
-  <!-- ここまで投稿フォーム -->
 </body>
