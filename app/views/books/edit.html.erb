@@ -1,13 +1,20 @@
 <!-- 投稿編集画面：投稿された本の感想を編集できる画面 -->
 <body>
     <h1>Editing Book</h1>
-    <%= form_with model:@book, local: true do |f| %>
-      <h4>Title</h4>
-      <%= f.text_field :title %>
-      <h4>Body</h4>
-      <%= f.text_area :body %>
-      <%= f.submit 'Update Book' %>
+    <%= form_with model:@book, class: "edit_book", local: true do |f| %>
+      <div class = "field">
+        <label for = "book_title">Title</label>
+        <%= f.text_field :title, {class: "book_title", id: "book_title"} %>
+      </div>
+      <div class = "field">
+        <label for = "book_body">Body</label>
+        <%= f.text_area :body, {class: "book_body", id: "book_body"} %>
+      </div>
+      <div class = "actions">
+        <%= f.submit 'Update Book' %>
+      </div>
     <% end %>
-    <%= link_to "Show", book_path(@book) %>
-    <%= link_to "Back", books_path %>
+    <%= link_to "Show", book_path(@book), class: "show" %>
+    |
+    <%= link_to "Back", books_path, class: "back" %>
 </body>

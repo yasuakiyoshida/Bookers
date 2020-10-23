@@ -14,12 +14,6 @@
  *= require_self
  */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   background-color: #fff;
   color: #333;
@@ -36,7 +30,7 @@ p, ol, ul, td {
   margin: 33px;
 }
 
-a {
+a:link {
   color: #000;
 }
 
@@ -46,4 +40,8 @@ a:visited {
 
 #notice {
   color: green;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
 }
