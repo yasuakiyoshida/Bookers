@@ -1,50 +1,54 @@
 <!-- 投稿一覧画面：投稿された本の感想を一覧表示する画面（一覧表示はIDの若い順に表示する） -->
-<p><%= notice %></p>
-<h1>Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <% @books.each do |book| %>
-    <tbody>
+<body>
+  <p id ="notice"><%= notice %></p>
+  <h1>Books</h1>
+  <!-- 投稿一覧 -->
+  <table>
+    <thead>
       <tr>
-        <td><%= book.title %></td>
-        <td><%= book.body %></td>
-        <td><%= link_to "Show", book_path(book) %></td>
-        <td><%= link_to "Edit", edit_book_path(book) %></td>
-        <td><%= link_to "Destroy", book_path(book.id), method: :delete, data: {confirm: "Are you sure?" } %></td>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan="3"></th>
       </tr>
-    </tbody>
-  <% end %>
-</table>
-<!-- 投稿フォーム -->
-<h2>New book</h2>
-<%= form_with model:@book, local:true do |f| %>
-  <!-- エラーメッセージ -->
-　<% if @book.errors.any? %>
-　  <div id="error_explanation">
-　    <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+    </thead>
+    <% @books.each do |book| %>
+      <tbody>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+          <td><%= link_to "Show", book_path(book) %></td>
+          <td><%= link_to "Edit", edit_book_path(book) %></td>
+          <td><%= link_to "Destroy", book_path(book.id), method: :delete, data: {confirm: "Are you sure?" } %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+  <!-- ここまで投稿一覧 -->
+  <!-- 投稿フォーム -->
+  <h2>New book</h2>
+  <%= form_with model:@book, local:true do |f| %>
+    <% if @book.errors.any? %>
+　    <div id="error_explanation">
+　      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
 　    
-　    <ul>
-　    　<% @book.errors.full_messages.each do |message| %>
-　    　　<li><%= message %></li>
-　    　<% end %>
-　    </ul>　
-　  </div>
-　<% end %>
-　<!-- ここまでエラーメッセージ -->
-
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-
-  <h4>Body</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit 'Create Book' %>
-
-<% end %>
+　      <ul>
+　        <% @book.errors.full_messages.each do |message| %>
+　          <li><%= message %></li>
+　        <% end %>
+　      </ul>　
+　    </div>
+    <% end %>
+    <div class = "field">
+      <label for = "book_title">Title</label>
+      <%= f.text_field :title, {class: "book_title", id: "book_title"} %>
+    </div>
+    <div class = "field">
+      <label for = "book_body">Body</label>
+      <%= f.text_area :body, {class: "book_body", id: "book_body"} %>
+    </div>
+    <div class = "actions">
+      <%= f.submit 'Create Book' %>
+    </div>
+  <% end %>
+  <!-- ここまで投稿フォーム -->
+</body>
